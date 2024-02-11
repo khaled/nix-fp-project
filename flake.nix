@@ -7,7 +7,7 @@
   outputs = inputs @ {fp, ...}: let
     flake-module = import ./flake-module.nix;
   in
-    fp.lib.mkFlake {inherit inputs;} ({config, ...}: {
+    fp.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       imports = [flake-module];
       flake.flakeModules.default = flake-module;
@@ -17,5 +17,5 @@
         go.enable = true;
         shell.packages = [pkgs.delve];
       };
-    });
+    };
 }
